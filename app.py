@@ -1108,5 +1108,4 @@ def main():
         st.session_state.page = "landing"
         st.rerun()
 
-if __name__ == "__main__":
-    main()
+main()
