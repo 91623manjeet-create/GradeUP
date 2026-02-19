@@ -81,54 +81,103 @@ GLOBAL_CSS = """
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
     [data-testid="stAppViewContainer"] {
-        background: linear-gradient(135deg, #1e3c72, #2a5298, #667eea);
+        background: linear-gradient(145deg, #0f1e45 0%, #1a3a6e 40%, #2a5298 75%, #3a6fd8 100%);
         background-attachment: fixed;
+    }
+    /* Animated subtle shimmer overlay */
+    [data-testid="stAppViewContainer"]::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(ellipse at 20% 20%, rgba(100,160,255,0.12) 0%, transparent 60%),
+                    radial-gradient(ellipse at 80% 80%, rgba(80,120,255,0.10) 0%, transparent 60%);
+        pointer-events: none;
+        z-index: 0;
     }
     .stApp > header {
         background: transparent !important;
     }
     section[data-testid="stSidebar"] {
-        background: rgba(255, 255, 255, 0.12) !important;
-        backdrop-filter: blur(16px) saturate(180%) !important;
-        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-        border-right: 1px solid rgba(255, 255, 255, 0.18) !important;
+        background: rgba(10, 25, 65, 0.65) !important;
+        backdrop-filter: blur(20px) saturate(200%) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(200%) !important;
+        border-right: 1px solid rgba(168, 216, 255, 0.15) !important;
         border-radius: 0 32px 32px 0 !important;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.2) !important;
+        box-shadow: 4px 0 32px rgba(0,0,0,0.3) !important;
     }
-    .block-container, .st-emotion-cache-13ln4jf, .st-emotion-cache-ocqkz7, div.st-emotion-cache-1wivap2 {
-        background: rgba(255, 255, 255, 0.15) !important;
-        backdrop-filter: blur(16px) saturate(180%) !important;
-        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-        border: 1px solid rgba(255, 255, 255, 0.18) !important;
-        border-radius: 28px !important;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.18) !important;
-        padding: 2rem !important;
-        margin: 1.2rem !important;
+    .block-container {
+        background: rgba(255, 255, 255, 0.07) !important;
+        backdrop-filter: blur(20px) saturate(160%) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.13) !important;
+        border-radius: 32px !important;
+        box-shadow: 0 12px 48px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.1) !important;
+        padding: 2.5rem !important;
+        margin: 1rem !important;
     }
+    /* Primary action buttons */
     .stButton > button {
-        background: rgba(255, 255, 255, 0.22) !important;
+        background: linear-gradient(135deg, rgba(168,216,255,0.22), rgba(100,160,255,0.18)) !important;
         backdrop-filter: blur(12px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        border: 1px solid rgba(168,216,255,0.35) !important;
         border-radius: 999px !important;
         color: white !important;
         font-weight: 600 !important;
-        padding: 0.7rem 1.8rem !important;
-        transition: all 0.3s ease !important;
+        padding: 0.72rem 1.8rem !important;
+        transition: all 0.25s ease !important;
         font-family: 'Poppins', sans-serif !important;
+        letter-spacing: 0.02em !important;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15) !important;
     }
     .stButton > button:hover {
-        transform: scale(1.04) !important;
-        background: rgba(255, 255, 255, 0.35) !important;
+        transform: translateY(-2px) scale(1.02) !important;
+        background: linear-gradient(135deg, rgba(168,216,255,0.38), rgba(100,160,255,0.30)) !important;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.2) !important;
+        border-color: rgba(168,216,255,0.6) !important;
     }
-    input, select, textarea, .stRadio > div > label, .stSelectbox > div > div {
-        background: rgba(255, 255, 255, 0.18) !important;
-        border-radius: 20px !important;
-        border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    .stButton > button:active {
+        transform: translateY(0px) scale(0.99) !important;
+    }
+    /* Inputs */
+    input[type="text"], input[type="email"], textarea {
+        background: rgba(255, 255, 255, 0.10) !important;
+        border-radius: 16px !important;
+        border: 1px solid rgba(168,216,255,0.25) !important;
         color: white !important;
+        padding: 0.65rem 1.1rem !important;
+        font-family: 'Poppins', sans-serif !important;
+        transition: border-color 0.2s, box-shadow 0.2s !important;
+    }
+    input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+        border-color: rgba(168,216,255,0.6) !important;
+        box-shadow: 0 0 0 3px rgba(168,216,255,0.15) !important;
+        outline: none !important;
+    }
+    input::placeholder, textarea::placeholder {
+        color: rgba(255,255,255,0.38) !important;
+    }
+    /* Selectbox */
+    .stSelectbox > div > div {
+        background: rgba(255,255,255,0.10) !important;
+        border-radius: 16px !important;
+        border: 1px solid rgba(168,216,255,0.25) !important;
+        color: white !important;
+    }
+    /* Radio */
+    .stRadio > div { gap: 0.5rem; }
+    .stRadio label {
+        background: rgba(255,255,255,0.09) !important;
+        border-radius: 16px !important;
         padding: 0.6rem 1rem !important;
+        border: 1px solid rgba(255,255,255,0.15) !important;
+        transition: background 0.2s, border-color 0.2s !important;
+    }
+    .stRadio label:hover {
+        background: rgba(168,216,255,0.15) !important;
+        border-color: rgba(168,216,255,0.4) !important;
     }
     hr {
-        border-color: rgba(255, 255, 255, 0.3) !important;
+        border-color: rgba(255, 255, 255, 0.12) !important;
     }
     footer {visibility: hidden !important;}
     .watermark {
@@ -136,8 +185,8 @@ GLOBAL_CSS = """
         bottom: 14px;
         left: 50%;
         transform: translateX(-50%);
-        color: rgba(255, 255, 255, 0.55);
-        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.45);
+        font-size: 13px;
         font-family: 'Poppins', system-ui, sans-serif;
         z-index: 9999;
         pointer-events: none;
@@ -147,12 +196,12 @@ GLOBAL_CSS = """
     .login-love {
         text-align: center;
         margin-top: 1.4rem;
-        font-size: 1.15rem;
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.88);
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.92);
         font-family: 'Poppins', sans-serif;
-        letter-spacing: 0.03em;
-        text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        letter-spacing: 0.04em;
+        text-shadow: 0 2px 12px rgba(168,216,255,0.5);
     }
     h1, h2, h3 {
         color: white !important;
@@ -164,18 +213,18 @@ GLOBAL_CSS = """
     }
     /* Glass card helper */
     .glass-card {
-        background: rgba(255,255,255,0.15);
-        backdrop-filter: blur(16px) saturate(180%);
-        -webkit-backdrop-filter: blur(16px) saturate(180%);
-        border: 1px solid rgba(255,255,255,0.22);
-        border-radius: 32px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-        padding: 2rem 2.5rem;
-        margin-bottom: 1.5rem;
+        background: rgba(255,255,255,0.09);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(168,216,255,0.18);
+        border-radius: 28px;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08);
+        padding: 1.8rem 2.2rem;
+        margin-bottom: 1.2rem;
     }
     .timer-badge {
         display: inline-block;
-        background: rgba(255,80,80,0.35);
+        background: rgba(255,80,80,0.28);
         border: 1px solid rgba(255,120,120,0.4);
         border-radius: 999px;
         padding: 0.4rem 1.4rem;
@@ -186,8 +235,8 @@ GLOBAL_CSS = """
         backdrop-filter: blur(8px);
     }
     .subject-tile {
-        background: rgba(255,255,255,0.18);
-        border: 1px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.09);
+        border: 1px solid rgba(168,216,255,0.18);
         border-radius: 24px;
         padding: 1.2rem 1rem;
         text-align: center;
@@ -199,8 +248,10 @@ GLOBAL_CSS = """
         margin-bottom: 0.5rem;
     }
     .subject-tile:hover {
-        background: rgba(255,255,255,0.3);
-        transform: translateY(-2px);
+        background: rgba(168,216,255,0.2);
+        border-color: rgba(168,216,255,0.4);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     }
     .score-big {
         font-size: 3.5rem;
@@ -211,14 +262,15 @@ GLOBAL_CSS = """
     }
     .correct-answer { color: #7fffb0 !important; font-weight: 600; }
     .wrong-answer   { color: #ff9090 !important; font-weight: 600; }
-    .stRadio > div { gap: 0.5rem; }
-    .stRadio label {
-        background: rgba(255,255,255,0.12) !important;
+    /* Info/error boxes */
+    .stAlert {
         border-radius: 16px !important;
-        padding: 0.6rem 1rem !important;
-        border: 1px solid rgba(255,255,255,0.18) !important;
-        transition: background 0.2s;
+        border: 1px solid rgba(255,255,255,0.15) !important;
     }
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+    ::-webkit-scrollbar-thumb { background: rgba(168,216,255,0.3); border-radius: 999px; }
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 """
@@ -553,58 +605,127 @@ def get_questions(subject: str, chapter: str = None, mode: str = "chapter") -> l
 # PAGE: LANDING
 # ─────────────────────────────────────────────
 def page_landing():
+    # Initialize selected course in session state
+    if "selected_course" not in st.session_state:
+        st.session_state.selected_course = "NDA"
+
+    # ── Hero section ──
     st.markdown("""
-    <div style="text-align:center; padding: 2rem 0 1rem;">
-        <div style="font-family:'Poppins',sans-serif; font-size:3.8rem; font-weight:800; color:white;
-                    text-shadow: 0 4px 24px rgba(0,0,0,0.3); letter-spacing:-1px;">
-            Grade<span style="color:#a8d8ff;">UP</span>
+    <div style="text-align:center; padding: 2.5rem 0 0.5rem;">
+        <div style="display:inline-block; background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25);
+                    border-radius:999px; padding:0.35rem 1.2rem; font-size:0.85rem; font-weight:600;
+                    color:rgba(255,255,255,0.85); letter-spacing:0.08em; margin-bottom:1rem;">
+            🎖️ DEFENCE EXAM PREPARATION
         </div>
-        <div style="color:rgba(255,255,255,0.8); font-size:1.1rem; margin-top:0.4rem; font-weight:500;">
-            Elevate Your Preparation for NDA, CDS &amp; Other Defence Exams
+        <div style="font-family:'Poppins',sans-serif; font-size:4.2rem; font-weight:800; color:white;
+                    text-shadow: 0 4px 32px rgba(0,0,0,0.35); letter-spacing:-2px; line-height:1.05;">
+            Grade<span style="color:#a8d8ff; text-shadow:0 0 40px rgba(168,216,255,0.5);">UP</span>
+        </div>
+        <div style="color:rgba(255,255,255,0.75); font-size:1.05rem; margin-top:0.6rem; font-weight:400;
+                    max-width:420px; margin-left:auto; margin-right:auto; line-height:1.6;">
+            Your premium platform to crack <strong style="color:white;">NDA, CDS</strong> &amp; other defence exams
         </div>
     </div>
     """, unsafe_allow_html=True)
 
-    with st.container():
-        st.markdown("### 🎖️ Create Your Profile")
+    # ── Stats strip ──
+    st.markdown("""
+    <div style="display:flex; justify-content:center; gap:2.5rem; margin:1.4rem 0 2rem;
+                flex-wrap:wrap;">
+        <div style="text-align:center;">
+            <div style="font-size:1.6rem; font-weight:800; color:#a8d8ff;">6</div>
+            <div style="font-size:0.78rem; color:rgba(255,255,255,0.6); margin-top:0.1rem;">Subjects</div>
+        </div>
+        <div style="text-align:center;">
+            <div style="font-size:1.6rem; font-weight:800; color:#a8d8ff;">200+</div>
+            <div style="font-size:0.78rem; color:rgba(255,255,255,0.6); margin-top:0.1rem;">Questions</div>
+        </div>
+        <div style="text-align:center;">
+            <div style="font-size:1.6rem; font-weight:800; color:#a8d8ff;">3</div>
+            <div style="font-size:0.78rem; color:rgba(255,255,255,0.6); margin-top:0.1rem;">Exam Tracks</div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
-        # Styled input labels
-        st.markdown('<p style="color:white; font-weight:600; margin-bottom:0.2rem;">Full Name</p>', unsafe_allow_html=True)
-        name = st.text_input("Full Name", placeholder="Enter your full name", label_visibility="collapsed")
+    # ── Form card ──
+    lcol, mcol, rcol = st.columns([1, 2, 1])
+    with mcol:
+        st.markdown("""
+        <div style="background:rgba(255,255,255,0.13); backdrop-filter:blur(20px);
+                    border:1px solid rgba(255,255,255,0.22); border-radius:28px;
+                    padding:2rem 2rem 1.5rem; box-shadow:0 16px 48px rgba(0,0,0,0.25);">
+            <div style="font-size:1.15rem; font-weight:700; color:white; margin-bottom:1.4rem;
+                        text-align:center; letter-spacing:0.02em;">✨ Create Your Profile</div>
+        </div>
+        """, unsafe_allow_html=True)
 
-        st.markdown('<p style="color:white; font-weight:600; margin-bottom:0.2rem;">Email Address</p>', unsafe_allow_html=True)
-        email = st.text_input("Email Address", placeholder="you@example.com", label_visibility="collapsed")
+        # Name input
+        st.markdown('<p style="color:rgba(255,255,255,0.85); font-weight:600; font-size:0.9rem; margin:0 0 0.25rem 0.2rem;">👤 Full Name</p>', unsafe_allow_html=True)
+        name = st.text_input("Full Name", placeholder="e.g. Arjun Sharma", label_visibility="collapsed", key="inp_name")
 
-        st.markdown('<p style="color:white; font-weight:600; margin-bottom:0.2rem;">Select Course</p>', unsafe_allow_html=True)
-        course = st.selectbox("Select Course", ["NDA", "CDS", "Other"], label_visibility="collapsed")
+        # Email input
+        st.markdown('<p style="color:rgba(255,255,255,0.85); font-weight:600; font-size:0.9rem; margin:0.8rem 0 0.25rem 0.2rem;">📧 Email Address</p>', unsafe_allow_html=True)
+        email = st.text_input("Email Address", placeholder="you@example.com", label_visibility="collapsed", key="inp_email")
 
-        col1, col2, col3 = st.columns([1, 2, 1])
-        with col2:
-            if st.button("🚀  Start Your Journey", use_container_width=True):
-                if not name.strip():
-                    st.error("Please enter your name.")
-                elif not email.strip() or "@" not in email:
-                    st.error("Please enter a valid email.")
-                else:
-                    st.session_state.name = name.strip()
-                    st.session_state.email = email.strip()
-                    st.session_state.course = course
-                    st.session_state.page = "dashboard"
+        # Course selector — pill buttons
+        st.markdown('<p style="color:rgba(255,255,255,0.85); font-weight:600; font-size:0.9rem; margin:0.8rem 0 0.5rem 0.2rem;">🎯 Select Your Course</p>', unsafe_allow_html=True)
+
+        course_options = ["NDA", "CDS", "Other"]
+        course_icons  = {"NDA": "⚔️", "CDS": "🛡️", "Other": "📚"}
+        c1, c2, c3 = st.columns(3)
+        for col, opt in zip([c1, c2, c3], course_options):
+            is_selected = st.session_state.selected_course == opt
+            with col:
+                btn_style = (
+                    "background:rgba(168,216,255,0.35) !important; "
+                    "border:2px solid rgba(168,216,255,0.8) !important; "
+                    "color:white !important; font-weight:700 !important;"
+                ) if is_selected else (
+                    "background:rgba(255,255,255,0.10) !important; "
+                    "border:1px solid rgba(255,255,255,0.22) !important; "
+                    "color:rgba(255,255,255,0.7) !important;"
+                )
+                st.markdown(f"""
+                <style>
+                div[data-testid="stButton"] > button[kind="secondary"]#{opt.lower()}-btn {{
+                    {btn_style}
+                }}
+                </style>
+                """, unsafe_allow_html=True)
+                if st.button(f"{course_icons[opt]} {opt}", key=f"course_{opt}", use_container_width=True):
+                    st.session_state.selected_course = opt
                     st.rerun()
 
-            # "Made with love" placed right below the submit button
-            st.markdown(
-                '<div class="login-love">Made with love ❤️ for NAUSHERA</div>',
-                unsafe_allow_html=True
-            )
+        # Show selected badge
+        sel = st.session_state.selected_course
+        st.markdown(f"""
+        <div style="text-align:center; margin:0.6rem 0 1rem;">
+            <span style="background:rgba(168,216,255,0.25); border:1px solid rgba(168,216,255,0.5);
+                         border-radius:999px; padding:0.25rem 1rem; font-size:0.85rem;
+                         font-weight:600; color:#a8d8ff;">
+                ✓ {sel} selected
+            </span>
+        </div>
+        """, unsafe_allow_html=True)
 
-    # Leaderboard quick link
-    st.markdown("<br>", unsafe_allow_html=True)
-    lcol1, lcol2, lcol3 = st.columns([1, 2, 1])
-    with lcol2:
-        if st.button("🏅 View Leaderboard", use_container_width=True):
-            st.session_state.page = "leaderboard"
-            st.rerun()
+        # Submit button
+        if st.button("🚀  Begin Your Journey", use_container_width=True, key="btn_submit"):
+            if not name.strip():
+                st.error("Please enter your name.")
+            elif not email.strip() or "@" not in email:
+                st.error("Please enter a valid email.")
+            else:
+                st.session_state.name  = name.strip()
+                st.session_state.email = email.strip()
+                st.session_state.course = st.session_state.selected_course
+                st.session_state.page  = "dashboard"
+                st.rerun()
+
+        # Made with love — below submit
+        st.markdown(
+            '<div class="login-love">Made with love ❤️ for NAUSHERA</div>',
+            unsafe_allow_html=True
+        )
 
     st.markdown(WATERMARK, unsafe_allow_html=True)
 
@@ -1024,6 +1145,11 @@ def page_results():
 # PAGE: LEADERBOARD
 # ─────────────────────────────────────────────
 def page_leaderboard():
+    # Guard — must be logged in
+    if not st.session_state.get("name", "").strip():
+        st.session_state.page = "landing"
+        st.rerun()
+
     render_sidebar()
     st.markdown("<h2>🏅 Leaderboard — Top Scores</h2>", unsafe_allow_html=True)
     st.markdown("<p style='color:rgba(255,255,255,0.75);'>Scores are saved from all sessions. Ranked by % score, then fastest time.</p>", unsafe_allow_html=True)
