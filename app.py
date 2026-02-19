@@ -1,3 +1,19 @@
+"""
+GradeUP — Premium Defence Exam Preparation Platform
+A glassmorphism Streamlit app for NDA/CDS aspirants.
+"""
+
+import streamlit as st
+import requests
+import random
+import time
+import datetime
+import html
+import altair as alt
+import pandas as pd
+import sqlite3
+import os
+
 # ─────────────────────────────────────────────
 # DATABASE — SQLite persistence
 # ─────────────────────────────────────────────
@@ -56,17 +72,6 @@ def db_get_leaderboard(limit: int = 20) -> list:
     rows = cur.fetchall()
     con.close()
     return rows
-
-
-import requests
-import random
-import time
-import datetime
-import html
-import altair as alt
-import pandas as pd
-import sqlite3
-import os
 
 # ─────────────────────────────────────────────
 # GLOBAL CSS — injected first on every render
